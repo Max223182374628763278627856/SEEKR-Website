@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEEKR — L'IA qui transforme chaque recherche en intention d'achat</title>
+  <meta name="description" content="SEEKR est le premier moteur de recherche interne propulsé par IA souveraine française. Transformez vos données comportementales en revenus. Hébergé en France, conforme RGPD.">
+  <meta property="og:title" content="SEEKR — IA Souveraine pour la Recherche E-commerce">
+  <meta property="og:description" content="Votre barre de recherche coûte des milliers d'euros par mois. SEEKR transforme chaque recherche en intention d'achat détectée.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://seekr.fr/">
+  <link rel="stylesheet" href="css/seekr.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://seekr.fr/#product",
+        "name": "SEEKR",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "SEEKR est un moteur de recherche interne propulsé par IA souveraine, hébergé en France, conçu pour les e-commerçants et PME. Il transforme les données comportementales (Dark Data) en intentions d'achat détectées en temps réel.",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "priceCurrency": "EUR" },
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://seekr.fr/#org",
+          "name": "SEEKR",
+          "url": "https://seekr.fr",
+          "foundingLocation": "Nantes, France",
+          "areaServed": "FR",
+          "knowsAbout": ["Recherche sémantique", "IA souveraine", "RGPD", "E-commerce", "Dark Data"]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce que la Dark Data en e-commerce ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "La Dark Data désigne toutes les données comportementales générées par vos visiteurs (recherches, clics, abandons) qui ne sont pas analysées. En moyenne, 73% des données e-commerce ne sont jamais exploitées." }
+          },
+          {
+            "@type": "Question",
+            "name": "SEEKR est-il conforme au RGPD ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Oui. SEEKR est hébergé sur des serveurs physiquement localisés en France/Europe. Aucune donnée ne transite vers des serveurs hors UE. Conformité RGPD native." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 6rem;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    }
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .italic { font-style: italic; font-weight: 300; }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--cream-dim);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .hero-float {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0.7;
+    }
+    .hero-stat {
+      background: rgba(22,22,22,0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.4rem;
+      backdrop-filter: blur(10px);
+      min-width: 180px;
+    }
+    .hero-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; }
+
+    @media (max-width: 1024px) { .hero-float { display: none; } }
+    @media (max-width: 640px) { .hero-cta-group { flex-direction: column; align-items: flex-start; } }
+
+    /* ─── DARK DATA ─── */
+    .dark-data-section { background: var(--charcoal); }
+    .dark-data-visual {
+      position: relative;
+      height: 320px;
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .data-stream {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      animation: streamFall var(--dur, 3s) var(--delay, 0s) linear infinite;
+      opacity: 0;
+    }
+    @keyframes streamFall {
+      0% { opacity: 0; transform: translateY(-100%); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(100%); }
+    }
+    .data-center {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .data-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ─── CALCULATOR ─── */
+    .calc-section { background: var(--black); }
+    .calc-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: clamp(2rem, 4vw, 3.5rem);
+    }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .slider-row { margin-bottom: 2rem; }
+    .slider-label { display: flex; justify-content: space-between; margin-bottom: 0.6rem; }
+    .slider-label span { font-size: 0.85rem; color: var(--cream-dim); }
+    .slider-label strong { font-size: 0.95rem; font-weight: 500; color: var(--gold); }
+    .result-col { display: flex; flex-direction: column; gap: 1rem; }
+    .result-block {
+      background: var(--card2);
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border-light);
+    }
+    .result-block.highlight { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+    .result-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .result-value { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; line-height: 1; }
+    .result-value.red { color: var(--danger); }
+    .result-value.green { color: var(--success); }
+    .calc-insight {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+    @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+
+    /* ─── HOW IT WORKS ─── */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+      counter-increment: step;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      min-width: 4rem;
+      text-align: right;
+    }
+    .step-num::before { content: counter(step, decimal-leading-zero); }
+    .step-body h4 { color: var(--cream); margin-bottom: 0.5rem; font-size: 1.2rem; }
+    .step-body p { color: var(--cream-dim); font-size: 0.92rem; }
+
+    /* ─── PROOF ─── */
+    .proof-section { background: var(--charcoal); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 1024px) { .testimonial-grid { grid-template-columns: 1fr; } }
+
+    /* ─── WAITLIST ─── */
+    .waitlist-section {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .waitlist-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .waitlist-box {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .waitlist-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .input-row { display: grid; grid-template-columns: 1fr auto; gap: 0.75rem; }
+    #waitlist-success { display: none; }
+    .success-rank {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .referral-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .referral-url { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* ─── GEO ─── */
+    .geo-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">SEEK<span>R</span></a>
+    <ul class="nav-links">
+      <li><a href="ecommerce.html">E-commerce</a></li>
+      <li><a href="souverainete.html">Souveraineté</a></li>
+      <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+      <li><a href="#blog">Blog</a></li>
+    </ul>
+    <a href="waitlist.html" class="nav-cta">Rejoindre la Waitlist →</a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+  <a href="ecommerce.html">E-commerce</a>
+  <a href="souverainete.html">Souveraineté</a>
+  <a href="#comment-ca-marche">Comment ça marche</a>
+  <a href="waitlist.html">Waitlist VIP</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="starfield"></div>
+
+  <!-- Floating stats (desktop) -->
+  <div class="hero-float">
+    <div class="hero-stat reveal reveal-delay-2">
+      <div class="hero-stat-val">73%</div>
+      <div class="hero-stat-label">des données comportementales jamais exploitées</div>
+    </div>
+    <div class="hero-stat reveal reveal-delay-3">
+      <div class="hero-stat-val">35%</div>
+      <div class="hero-stat-label">des chercheurs quittent sans acheter</div>
+    </div>
+    <div class="hero-stat reveal reveal-delay-4">
+      <div class="hero-stat-val">4.5×</div>
+      <div class="hero-stat-label">conversion recherche vs navigation</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-tag reveal">
+        <div class="waitlist-counter">
+          <div class="dot"></div>
+          <span id="hero-count">847</span> inscrits sur la Waitlist
+        </div>
+        <span class="badge badge-gold">Made in France</span>
+      </div>
+
+      <h1 class="hero-title reveal reveal-delay-1">
+        Votre barre de recherche<br>
+        <span class="italic text-gradient">vous coûte des milliers</span><br>
+        d'euros par mois.
+      </h1>
+
+      <p class="hero-sub reveal reveal-delay-2">
+        Vos clients tapent. Ils ne trouvent pas. Ils partent.<br>
+        SEEKR transforme chaque recherche en <strong>intention d'achat détectée</strong> — grâce à une IA souveraine hébergée en France.
+      </p>
+
+      <div class="hero-cta-group reveal reveal-delay-3">
+        <a href="waitlist.html" class="btn btn-primary">
+          Rejoindre la Waitlist VIP
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#calculateur" class="btn btn-ghost">
+          Calculer mes pertes →
+        </a>
+      </div>
+
+      <div class="reveal reveal-delay-4" style="margin-top: 3rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+        <span class="tag">🇫🇷 Hébergé en France</span>
+        <span class="tag">✓ RGPD natif</span>
+        <span class="tag">∞ Données 100% vôtres</span>
+        <span class="tag">⚡ Intégration en 48h</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-indicator">
+      <div class="arrow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DARK DATA ─── -->
+<section class="section dark-data-section">
+  <div class="container">
+    <div class="grid-2" style="gap: 4rem; align-items: center;">
+      <div>
+        <div class="section-label reveal">
+          <span class="eyebrow">Le Problème</span>
+        </div>
+        <h2 class="reveal reveal-delay-1">La <em>Dark Data</em> — le trou noir de votre croissance</h2>
+        <span class="gold-line reveal reveal-delay-2"></span>
+        <p class="lead reveal reveal-delay-2">
+          Chaque jour, vos visiteurs génèrent des milliers de signaux comportementaux : requêtes tapées, résultats ignorés, recherches abandonnées, clics sans achat.
+        </p>
+        <p class="reveal reveal-delay-3" style="color: var(--cream-dim); margin-top: 1rem; font-size: 0.95rem;">
+          Ces données ne sont <strong>ni collectées, ni analysées, ni exploitées</strong>. Elles disparaissent. Ce sont des intentions d'achat qui s'évaporent — avec le chiffre d'affaires correspondant.
+        </p>
+        <p class="reveal reveal-delay-3" style="color: var(--cream-dim); margin-top: 1rem; font-size: 0.95rem;">
+          SEEKR capture, interprète et agit sur chaque signal en temps réel. Votre moteur de recherche devient une <strong>machine à intentions</strong>.
+        </p>
+        <div style="margin-top: 2rem;" class="reveal reveal-delay-4">
+          <a href="ecommerce.html" class="btn btn-ghost">Voir comment → E-commerce</a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="dark-data-visual">
+          <!-- Data streams -->
+          <div class="data-stream" style="left:8%; --dur:2.8s; --delay:0s;"></div>
+          <div class="data-stream" style="left:18%; --dur:3.5s; --delay:0.4s;"></div>
+          <div class="data-stream" style="left:32%; --dur:2.2s; --delay:1s;"></div>
+          <div class="data-stream" style="left:48%; --dur:4s; --delay:0.2s;"></div>
+          <div class="data-stream" style="left:62%; --dur:3.1s; --delay:1.5s;"></div>
+          <div class="data-stream" style="left:76%; --dur:2.6s; --delay:0.8s;"></div>
+          <div class="data-stream" style="left:88%; --dur:3.8s; --delay:0.3s;"></div>
+
+          <div class="data-center">
+            <div class="data-pct">73%</div>
+            <div style="font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; letter-spacing: 0.08em;">des données jamais exploitées</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem;">
+          <div class="card card--gold" style="padding: 1.2rem;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size: 2rem; color: var(--gold); font-weight:600;">35%</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem;">des chercheurs quittent sans trouver</div>
+          </div>
+          <div class="card" style="padding: 1.2rem;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size: 2rem; color: var(--cream); font-weight:600;">4.5×</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem;">conversion via recherche vs navigation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CALCULATOR ─── -->
+<section class="section calc-section" id="calculateur">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label reveal" style="justify-content: center;">
+        <span class="eyebrow">Activation</span>
+      </div>
+      <h2 class="reveal reveal-delay-1">Combien vous coûte<br><em>votre barre de recherche actuelle ?</em></h2>
+      <p class="lead reveal reveal-delay-2" style="max-width: 500px; margin: 1rem auto 0;">3 curseurs. 30 secondes. La vérité sur vos pertes cachées.</p>
+    </div>
+
+    <div class="calc-wrap reveal reveal-delay-2" id="loss-calc">
+      <div class="calc-grid">
+        <div>
+          <div class="slider-row">
+            <div class="slider-label">
+              <span>Visiteurs mensuels</span>
+              <strong id="out-visitors">12 000</strong>
+            </div>
+            <input type="range" id="calc-visitors" min="1000" max="100000" step="500" value="12000">
+          </div>
+          <div class="slider-row">
+            <div class="slider-label">
+              <span>Utilisent la recherche</span>
+              <strong id="out-searchers">28%</strong>
+            </div>
+            <input type="range" id="calc-searchers" min="5" max="60" step="1" value="28">
+          </div>
+          <div class="slider-row">
+            <div class="slider-label">
+              <span>Panier moyen</span>
+              <strong id="out-panier">74 €</strong>
+            </div>
+            <input type="range" id="calc-panier" min="15" max="500" step="5" value="74">
+          </div>
+          <div class="calc-insight" id="out-insight"></div>
+        </div>
+
+        <div class="result-col">
+          <div class="result-block">
+            <div class="result-label">Visiteurs perdus / mois</div>
+            <div class="result-value red" id="out-lost">—</div>
+          </div>
+          <div class="result-block">
+            <div class="result-label">Manque à gagner mensuel</div>
+            <div class="result-value red" id="out-euros">—</div>
+          </div>
+          <div class="result-block highlight">
+            <div class="result-label">Gain potentiel avec SEEKR</div>
+            <div class="result-value green" id="out-gain">—</div>
+          </div>
+          <div style="margin-top: 0.5rem;">
+            <div style="font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem;">Niveau de perte</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="loss-bar" style="width: 0%;"></div>
+            </div>
+          </div>
+          <a href="waitlist.html" class="btn btn-primary" style="margin-top: 0.5rem; justify-content: center;">
+            Récupérer ces ventes →
+          </a>
+          <p style="font-size: 0.72rem; color: var(--muted); text-align: center;">Accès Waitlist VIP · 100% gratuit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section" id="comment-ca-marche" style="background: var(--charcoal);">
+  <div class="container">
+    <div class="grid-2" style="gap: 4rem; align-items: start;">
+      <div>
+        <div class="section-label reveal">
+          <span class="eyebrow">Comment ça marche</span>
+        </div>
+        <h2 class="reveal reveal-delay-1">De la recherche perdue<br>à <em>l'intention capturée</em></h2>
+        <span class="gold-line reveal reveal-delay-2"></span>
+        <p class="reveal reveal-delay-2" style="color: var(--cream-dim); font-size: 0.95rem;">
+          SEEKR ne se contente pas de remplacer votre barre de recherche. Il apprend de chaque interaction pour affiner sa compréhension des intentions de vos clients.
+        </p>
+      </div>
+      <div class="steps reveal reveal-delay-2">
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Capture sémantique</h4>
+            <p>Chaque requête est analysée dans son contexte — fautes de frappe, synonymes, langage naturel. "jean slim bleu pas trop serré" est compris comme une intention précise.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Profiling comportemental</h4>
+            <p>SEEKR construit en temps réel un profil d'intention : historique de recherche, clics, abandons, temps passé. Chaque signal enrichit la prochaine réponse.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Résultat personnalisé</h4>
+            <p>La réponse affichée n'est pas un simple filtre de catalogue. C'est une sélection intelligente, ordonnée par probabilité d'achat pour CE visiteur.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Intelligence cumulative</h4>
+            <p>SEEKR s'améliore avec le temps. Plus il traite de recherches sur votre site, plus ses prédictions deviennent précises. Un modèle entraîné sur vos données, pour vos clients.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROOF ─── -->
+<section class="section proof-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label reveal" style="justify-content: center;">
+        <span class="eyebrow">Ils ont ce problème</span>
+      </div>
+      <h2 class="reveal reveal-delay-1">Vos pairs le disent<br><em>mieux que nous</em></h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial reveal reveal-delay-1">
+        <p class="testimonial-text">"Mon taux de rebond après recherche dépasse 68%. Je sais que je perds des ventes. Je ne sais pas lesquelles."</p>
+        <p class="testimonial-author">— Responsable e-commerce · Prêt-à-porter · 850K€ CA annuel</p>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <p class="testimonial-text">"On stocke des milliers de données comportementales. On n'en exploite aucune. C'est frustrant de sentir que la solution existe quelque part."</p>
+        <p class="testimonial-author">— DSI · PME industrielle · 120 collaborateurs</p>
+      </div>
+      <div class="testimonial reveal reveal-delay-3">
+        <p class="testimonial-text">"ChatGPT connaît mes clients mieux que mon CRM. Il est temps que mon site fasse pareil."</p>
+        <p class="testimonial-author">— Fondateur · SaaS B2B · Nantes</p>
+      </div>
+    </div>
+
+    <!-- Why now -->
+    <div style="margin-top: 4rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center;" class="reveal reveal-delay-2">
+      <div style="font-family:'Cormorant Garamond',serif; font-size: 5rem; color: var(--gold); font-weight:300; line-height:1;">40%</div>
+      <div>
+        <h4 style="margin-bottom: 0.5rem;">Pourquoi maintenant ?</h4>
+        <p style="color: var(--cream-dim); font-size: 0.95rem;">Google SGE, Perplexity, ChatGPT — <strong>40% des requêtes passent déjà par une IA</strong> avant d'atteindre votre site. Si votre recherche interne n'est pas IA-native, vous existez à moitié. Vos concurrents qui adoptent SEEKR maintenant construisent une avance irréversible.</p>
+        <div class="geo-tags">
+          <span class="badge badge-muted">Google SGE</span>
+          <span class="badge badge-muted">Perplexity AI</span>
+          <span class="badge badge-muted">ChatGPT Search</span>
+          <span class="badge badge-gold">SEEKR — IA native</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WAITLIST ─── -->
+<section class="section waitlist-section" id="waitlist">
+  <div class="waitlist-glow"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="waitlist-box">
+      <div class="section-label reveal" style="justify-content: center;">
+        <span class="eyebrow">Waitlist VIP</span>
+      </div>
+      <h2 class="reveal reveal-delay-1">Soyez parmi les premiers<br><em>à transformer vos recherches</em></h2>
+      <span class="gold-line gold-line--center reveal reveal-delay-2"></span>
+      <p class="reveal reveal-delay-2" style="color: var(--cream-dim);">
+        Les 100 premiers inscrits bénéficient du <strong>tarif à vie</strong> — -40% sur le prix public. Accès Beta prioritaire. Onboarding personnalisé.
+      </p>
+
+      <div id="waitlist-form-wrapper" class="reveal reveal-delay-3">
+        <form class="waitlist-form" id="waitlist-form">
+          <div class="input-row">
+            <input type="email" placeholder="votre@email.pro" required>
+            <button type="submit" class="btn btn-primary">Rejoindre →</button>
+          </div>
+          <select>
+            <option value="" disabled selected>Je suis...</option>
+            <option>E-commerçant (B2C)</option>
+            <option>Responsable marketing</option>
+            <option>DSI / Développeur</option>
+            <option>Dirigeant PME</option>
+            <option>Autre</option>
+          </select>
+          <p style="font-size: 0.72rem; color: var(--muted);">Aucun spam. Désabonnement en 1 clic. Vos données restent en France.</p>
+        </form>
+      </div>
+
+      <div id="waitlist-success" style="margin-top: 1.5rem; text-align: center;">
+        <div style="font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; letter-spacing: 0.08em;">VOTRE RANG</div>
+        <div class="success-rank"><span class="rank-number">—</span></div>
+        <p style="color: var(--cream-dim); margin-top: 1rem;">Bienvenue dans SEEKR. Vous recevrez un email de confirmation dans quelques instants.</p>
+        <div class="referral-box">
+          <span class="referral-url">seekr.fr/waitlist?ref=SK<span id="ref-code">8A2K</span></span>
+          <button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.78rem; white-space: nowrap;" onclick="copyRef()">Copier le lien</button>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--muted); margin-top: 0.75rem;">Parrainez 3 personnes → Accès Beta prioritaire · 10 parrainages → Onboarding offert</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BLOG ─── -->
+<section class="section" id="blog">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div class="section-label reveal">
+          <span class="eyebrow">Expertise</span>
+        </div>
+        <h2 class="reveal reveal-delay-1">Les articles qui vous<br><em>coûtent de ne pas lire</em></h2>
+      </div>
+      <a href="#blog" class="btn btn-ghost reveal">Tous les articles →</a>
+    </div>
+    <div class="grid-3">
+      <a href="#" class="card" style="text-decoration: none; display: block;" class="reveal">
+        <span class="badge badge-muted" style="margin-bottom: 1.2rem;">Dark Data</span>
+        <h4 style="margin-bottom: 0.75rem; line-height: 1.3;">Pourquoi votre barre de recherche fait fuir 35% de vos clients</h4>
+        <p style="font-size: 0.85rem; color: var(--muted);">Et comment le mesurer en 5 minutes avec nos données sectorielles.</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: var(--gold); font-size: 0.82rem;">Lire l'article <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#" class="card reveal reveal-delay-1" style="text-decoration: none; display: block;">
+        <span class="badge badge-gold" style="margin-bottom: 1.2rem;">Lead Magnet</span>
+        <h4 style="margin-bottom: 0.75rem; line-height: 1.3;">Dark Data : les 4 types de données que votre site collecte sans en tirer profit</h4>
+        <p style="font-size: 0.85rem; color: var(--muted);">Le guide complet pour identifier et monétiser vos données comportementales.</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: var(--gold); font-size: 0.82rem;">Lire l'article <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#" class="card reveal reveal-delay-2" style="text-decoration: none; display: block;">
+        <span class="badge badge-red" style="margin-bottom: 1.2rem;">RGPD & IA</span>
+        <h4 style="margin-bottom: 0.75rem; line-height: 1.3;">IA souveraine vs solutions américaines : ce que votre contrat SaaS cache sur vos données</h4>
+        <p style="font-size: 0.85rem; color: var(--muted);">Analyse juridique et technique des clauses qui exposent vos données clients.</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: var(--gold); font-size: 0.82rem;">Lire l'article <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo" style="font-size: 1.4rem;">SEEK<span>R</span></a>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem; max-width: 280px; line-height: 1.6;">L'IA souveraine qui transforme chaque recherche en intention d'achat. Conçu à Nantes, hébergé en France.</p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+          <span class="tag">🇫🇷 Nantes</span>
+          <span class="tag">RGPD</span>
+          <span class="tag">IA Souveraine</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Produit</h5>
+        <ul>
+          <li><a href="ecommerce.html">E-commerce & Performance</a></li>
+          <li><a href="souverainete.html">Souveraineté & Sécurité</a></li>
+          <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="waitlist.html">Waitlist VIP</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Ressources</h5>
+        <ul>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#calculateur">Calculateur de pertes</a></li>
+          <li><a href="#">Documentation API</a></li>
+          <li><a href="#">Statut du service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGU / CGV</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEEKR SAS — Nantes, France. Tous droits réservés.</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted);">Serveurs FR · Données hors UE : jamais.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/seekr.js"></script>
+<script>
+  // Hero counter animation
+  const hc = document.getElementById('hero-count');
+  if (hc) {
+    setTimeout(() => {
+      let n = 800;
+      const target = 847;
+      const timer = setInterval(() => {
+        n += Math.floor(Math.random() * 3 + 1);
+        hc.textContent = n.toLocaleString('fr-FR');
+        if (n >= target) { hc.textContent = target.toLocaleString('fr-FR'); clearInterval(timer); }
+      }, 60);
+    }, 800);
+  }
+  function copyRef() {
+    const url = 'seekr.fr/waitlist?ref=SK8A2K';
+    navigator.clipboard?.writeText(url);
+    event.target.textContent = '✓ Copié !';
+    setTimeout(() => event.target.textContent = 'Copier le lien', 2000);
+  }
+</script>
+</body>
+</html>
