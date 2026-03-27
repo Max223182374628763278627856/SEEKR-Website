@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEEKR pour l'E-commerce — Transformez votre recherche en machine à conversions</title>
+  <meta name="description" content="SEEKR aide les e-commerçants à récupérer les ventes perdues à cause d'une barre de recherche inefficace. IA sémantique, personnalisation en temps réel, RGPD natif.">
+  <link rel="stylesheet" href="css/seekr.css">
+  <style>
+    .hero-ecom {
+      padding: clamp(8rem, 14vw, 14rem) 0 clamp(4rem, 8vw, 8rem);
+      background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+      position: relative; overflow: hidden;
+    }
+    .grid-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 1024px) { .grid-features { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .grid-features { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .feature-card:hover { border-color: var(--border); }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .cta-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+    .comparison-table th, .comparison-table td {
+      text-align: left;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.88rem;
+    }
+    .comparison-table th { color: var(--muted); font-weight: 400; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .comparison-table td:first-child { color: var(--cream-dim); }
+    .comparison-table .seekr-col { color: var(--gold); font-weight: 500; }
+    .comparison-table .no { color: var(--muted); }
+    .comparison-table .yes { color: var(--success); }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .check { color: var(--success); }
+    .cross { color: var(--danger); }
+    .platforms { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .platform-badge {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">SEEK<span>R</span></a>
+    <ul class="nav-links">
+      <li><a href="ecommerce.html" style="color: var(--gold);">E-commerce</a></li>
+      <li><a href="souverainete.html">Souveraineté</a></li>
+      <li><a href="index.html#comment-ca-marche">Comment ça marche</a></li>
+      <li><a href="index.html#blog">Blog</a></li>
+    </ul>
+    <a href="waitlist.html" class="nav-cta">Rejoindre la Waitlist →</a>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a>
+  <a href="souverainete.html">Souveraineté</a>
+  <a href="waitlist.html">Waitlist VIP</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero-ecom">
+  <div class="starfield"></div>
+  <div class="container">
+    <div class="grid-2" style="gap: 4rem; align-items: center;">
+      <div>
+        <div class="hero-tag reveal" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+          <span class="badge badge-gold">E-commerce & Performance</span>
+          <span class="badge badge-green">ROI Positif dès M+1</span>
+        </div>
+        <h1 class="reveal reveal-delay-1">
+          Votre recherche, <em>enfin</em><br>
+          à la hauteur de vos produits
+        </h1>
+        <span class="gold-line reveal reveal-delay-2"></span>
+        <p class="lead reveal reveal-delay-2">
+          SEEKR transforme votre moteur de recherche interne en assistant commercial intelligent. Chaque requête devient une conversation. Chaque résultat, une opportunité de conversion.
+        </p>
+        <div class="reveal reveal-delay-3" style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+          <a href="waitlist.html" class="btn btn-primary">Accès Waitlist VIP →</a>
+          <a href="#comparaison" class="btn btn-outline">Comparer avec l'existant</a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- Search demo visual -->
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 2rem; font-family: 'DM Sans', sans-serif;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: var(--card2); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 0.7rem 1rem; margin-bottom: 1.5rem;">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--muted)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <span id="search-demo-text" style="font-size: 0.9rem; color: var(--cream); font-family:'JetBrains Mono',monospace; font-size:0.82rem;"></span>
+            <span style="width:1px; height:16px; background:var(--gold); animation: blink 1s infinite;" id="cursor-blink"></span>
+          </div>
+          <div style="font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;">SEEKR comprend l'intention :</div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; background: rgba(201,168,76,0.06); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 0.9rem;">
+              <div style="width: 36px; height: 36px; background: var(--card2); border-radius: 4px; flex-shrink: 0;"></div>
+              <div>
+                <div style="font-size: 0.82rem; color: var(--cream);" id="result-1">Jean slim bleu marine — coupe ajustée</div>
+                <div style="font-size: 0.72rem; color: var(--gold);">98% pertinence</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; background: var(--card2); border-radius: var(--radius); padding: 0.6rem 0.9rem; opacity: 0.7;">
+              <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.03); border-radius: 4px; flex-shrink: 0;"></div>
+              <div><div style="font-size: 0.82rem; color: var(--cream-dim);">Jean stretch slim Homme</div><div style="font-size: 0.72rem; color: var(--muted);">87% pertinence</div></div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; background: var(--card2); border-radius: var(--radius); padding: 0.6rem 0.9rem; opacity: 0.5;">
+              <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.03); border-radius: 4px; flex-shrink: 0;"></div>
+              <div><div style="font-size: 0.82rem; color: var(--cream-dim);">Pantalon chino bleu nuit</div><div style="font-size: 0.72rem; color: var(--muted);">74% pertinence</div></div>
+            </div>
+          </div>
+          <div style="margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted);">
+            <span>⚡ Réponse : 34ms</span><span>🔒 Données hébergées en France</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── METRICS ─── -->
+<section class="section--sm" style="background: var(--charcoal); border-top: 1px solid var(--border-light);">
+  <div class="container">
+    <div class="grid-4">
+      <div class="metric reveal">
+        <div class="metric-value">+68%</div>
+        <div class="metric-label">Taux de conversion recherche</div>
+      </div>
+      <div class="metric reveal reveal-delay-1">
+        <div class="metric-value">-35%</div>
+        <div class="metric-label">Taux de rebond après recherche</div>
+      </div>
+      <div class="metric reveal reveal-delay-2">
+        <div class="metric-value">+22%</div>
+        <div class="metric-label">Panier moyen sur sessions avec recherche</div>
+      </div>
+      <div class="metric reveal reveal-delay-3">
+        <div class="metric-value">34ms</div>
+        <div class="metric-label">Temps de réponse moyen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label reveal" style="justify-content: center;"><span class="eyebrow">Fonctionnalités</span></div>
+      <h2 class="reveal reveal-delay-1">Ce que SEEKR fait<br><em>que les autres ne font pas</em></h2>
+    </div>
+    <div class="grid-features">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🧠</div>
+        <h4 style="margin-bottom: 0.75rem;">Recherche sémantique</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim);">Comprend les fautes de frappe, les synonymes, le langage naturel et les requêtes complexes. "jean pas trop serré bleu" → résultats pertinents, pas zéro résultat.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">⚡</div>
+        <h4 style="margin-bottom: 0.75rem;">Personnalisation temps réel</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim);">Chaque résultat est ordonné selon le profil comportemental du visiteur. Deux clients, même requête, résultats différents et pertinents pour chacun.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">📊</div>
+        <h4 style="margin-bottom: 0.75rem;">Analytics d'intention</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim);">Dashboard complet : requêtes sans résultat, intentions non satisfaites, produits sous-exposés. Transformez la Dark Data en stratégie produit.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔗</div>
+        <h4 style="margin-bottom: 0.75rem;">Intégration universelle</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim);">Compatible WooCommerce, PrestaShop, Shopify, Magento, API custom. Une ligne de code pour l'installation. Résultats en 48h.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🎯</div>
+        <h4 style="margin-bottom: 0.75rem;">Merchandising intelligent</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim);">Boostez automatiquement les produits à forte marge, les nouveautés, les stocks à écouler. L'IA optimise selon vos objectifs business.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🔒</div>
+        <h4 style="margin-bottom: 0.75rem;">Données 100% vôtres</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim);">Aucune donnée client ne quitte votre infrastructure. Hébergement France, conformité RGPD native, modèle entraîné exclusivement sur vos données.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PLATFORMS ─── -->
+<section class="section--sm" style="background: var(--charcoal);">
+  <div class="container">
+    <div class="reveal" style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
+      <div style="min-width: 200px;">
+        <div class="eyebrow" style="margin-bottom: 0.5rem;">Compatibilité</div>
+        <h3>Votre plateforme,<br>notre priorité</h3>
+      </div>
+      <div>
+        <p style="font-size: 0.88rem; color: var(--cream-dim); margin-bottom: 1rem;">SEEKR s'intègre nativement avec les principales plateformes e-commerce. Installation sans développeur pour les cas standards.</p>
+        <div class="platforms">
+          <div class="platform-badge"><span>🟢</span> WooCommerce</div>
+          <div class="platform-badge"><span>🟢</span> PrestaShop</div>
+          <div class="platform-badge"><span>🟢</span> Shopify</div>
+          <div class="platform-badge"><span>🟡</span> Magento</div>
+          <div class="platform-badge"><span>🟢</span> API Custom</div>
+          <div class="platform-badge"><span>🟡</span> Sylius</div>
+        </div>
+        <p style="font-size: 0.72rem; color: var(--muted); margin-top: 0.75rem;">🟢 Disponible au lancement · 🟡 En développement</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPARISON ─── -->
+<section class="section" id="comparaison">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label reveal" style="justify-content: center;"><span class="eyebrow">Comparaison</span></div>
+      <h2 class="reveal reveal-delay-1">SEEKR face aux <em>alternatives</em></h2>
+    </div>
+    <div class="card card--gold reveal">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Critère</th>
+            <th class="seekr-col">SEEKR</th>
+            <th>Algolia</th>
+            <th>Elasticsearch</th>
+            <th>Native CMS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Recherche sémantique IA</td>
+            <td class="seekr-col check">✓ Natif</td>
+            <td class="yes">✓ Addon payant</td>
+            <td class="no">≈ Complexe</td>
+            <td class="no cross">✗</td>
+          </tr>
+          <tr>
+            <td>Données hébergées en France</td>
+            <td class="seekr-col check">✓ Nativement</td>
+            <td class="no cross">✗ US/EU mixte</td>
+            <td class="no">≈ Self-hosted</td>
+            <td class="no">≈ Dépend</td>
+          </tr>
+          <tr>
+            <td>Personnalisation temps réel</td>
+            <td class="seekr-col check">✓ Inclus</td>
+            <td class="yes">✓ Plan Pro+</td>
+            <td class="no cross">✗ Manuel</td>
+            <td class="no cross">✗</td>
+          </tr>
+          <tr>
+            <td>Analytics d'intention</td>
+            <td class="seekr-col check">✓ Dashboard natif</td>
+            <td class="no">≈ Limité</td>
+            <td class="no cross">✗</td>
+            <td class="no cross">✗</td>
+          </tr>
+          <tr>
+            <td>RGPD sans configuration</td>
+            <td class="seekr-col check">✓ Natif</td>
+            <td class="no">≈ Contrat DPA</td>
+            <td class="no">≈ Self-hosted</td>
+            <td class="no">≈ Dépend</td>
+          </tr>
+          <tr>
+            <td>Prix mensuel PME</td>
+            <td class="seekr-col">À partir de X€</td>
+            <td style="color: var(--danger);">299€/mois+</td>
+            <td style="color: var(--muted);">Infrastructure + dev</td>
+            <td class="yes">Inclus (limité)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="section--sm">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div style="position: relative; z-index: 2;">
+        <div class="eyebrow" style="margin-bottom: 1rem;">Accès Anticipé</div>
+        <h2 style="margin-bottom: 1rem;">Prêt à récupérer <em>vos ventes perdues ?</em></h2>
+        <p style="color: var(--cream-dim); max-width: 480px; margin: 0 auto 2rem;">Rejoignez la Waitlist VIP. Les 100 premiers inscrits bénéficient d'un tarif à vie — -40% sur le prix public.</p>
+        <a href="waitlist.html" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">Rejoindre la Waitlist VIP →</a>
+        <p style="font-size: 0.72rem; color: var(--muted); margin-top: 1rem;">Gratuit · Pas de carte requise · Annulation à tout moment</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo" style="font-size: 1.4rem;">SEEK<span>R</span></a>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem; max-width: 280px; line-height: 1.6;">L'IA souveraine qui transforme chaque recherche en intention d'achat. Conçu à Nantes, hébergé en France.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Produit</h5>
+        <ul>
+          <li><a href="ecommerce.html">E-commerce & Performance</a></li>
+          <li><a href="souverainete.html">Souveraineté & Sécurité</a></li>
+          <li><a href="waitlist.html">Waitlist VIP</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Ressources</h5>
+        <ul>
+          <li><a href="index.html#blog">Blog</a></li>
+          <li><a href="index.html#calculateur">Calculateur de pertes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGU / CGV</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEEKR SAS — Nantes, France.</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted);">Serveurs FR · Données hors UE : jamais.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/seekr.js"></script>
+<script>
+  // Search demo animation
+  const queries = [
+    ["jean slim bleu pas trop serré", "Jean slim bleu marine — coupe ajustée"],
+    ["écouteurs sans fil sport natation", "Casque sport waterproof IPX7"],
+    ["crème hydratante peau sèche sans parfum", "Crème visage peaux sensibles — sans allergènes"],
+    ["bureau télétravail compact blanc", "Bureau compact 120cm — finition blanche"],
+  ];
+  let qi = 0, ci = 0;
+  const textEl = document.getElementById('search-demo-text');
+  const res1 = document.getElementById('result-1');
+  function typeQuery() {
+    if (!textEl) return;
+    const [query, result] = queries[qi % queries.length];
+    if (ci <= query.length) {
+      textEl.textContent = query.slice(0, ci);
+      ci++;
+      setTimeout(typeQuery, 60);
+    } else {
+      if (res1) res1.textContent = result;
+      setTimeout(() => {
+        ci = 0; qi++;
+        textEl.textContent = '';
+        setTimeout(typeQuery, 500);
+      }, 2500);
+    }
+  }
+  setTimeout(typeQuery, 800);
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+</script>
+</body>
+</html>

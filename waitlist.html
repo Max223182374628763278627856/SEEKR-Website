@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEEKR — Waitlist VIP | Accès Prioritaire</title>
+  <meta name="description" content="Rejoignez la Waitlist VIP SEEKR. Tarif à vie -40% pour les 100 premiers. Accès Beta prioritaire. IA de recherche souveraine, made in France.">
+  <link rel="stylesheet" href="css/seekr.css">
+  <style>
+    .waitlist-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .wl-left {
+      background: var(--charcoal);
+      border-right: 1px solid var(--border-light);
+      padding: clamp(6rem, 10vw, 10rem) clamp(2rem, 5vw, 5rem) 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .wl-right {
+      padding: clamp(6rem, 10vw, 10rem) clamp(2rem, 5vw, 5rem) 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .waitlist-page { grid-template-columns: 1fr; }
+      .wl-left { padding: 8rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--border-light); }
+      .wl-right { padding: 3rem 2rem 5rem; }
+    }
+    .benefit-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .benefit-row:last-child { border-bottom: none; }
+    .benefit-icon {
+      width: 36px; height: 36px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .benefit-title { font-size: 0.9rem; font-weight: 500; color: var(--cream); margin-bottom: 0.2rem; }
+    .benefit-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .form-section { display: flex; flex-direction: column; gap: 1rem; }
+    .rank-display {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .rank-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .rank-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+    .progress-section { margin-top: 0.5rem; }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .referral-section {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .referral-title { font-size: 0.82rem; font-weight: 500; color: var(--cream); margin-bottom: 0.75rem; }
+    .referral-url-box {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--card2);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .referral-url-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .copy-btn {
+      font-size: 0.72rem;
+      color: var(--gold);
+      background: none;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .milestone-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+    .milestone-num { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); min-width: 28px; }
+    .milestone-text { font-size: 0.82rem; color: var(--cream-dim); }
+    .counter-display {
+      position: absolute;
+      top: 2rem; right: 2rem;
+    }
+    .slots-bar {
+      background: var(--card2);
+      height: 3px;
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 0.5rem 0 1rem;
+    }
+    .slots-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); width: 0%; transition: width 1.5s ease; }
+    .trust-logos {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
+    }
+    .trust-item { font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
+
+    /* Success state */
+    #success-state { display: none; }
+    #form-state { display: block; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">SEEK<span>R</span></a>
+    <ul class="nav-links">
+      <li><a href="ecommerce.html">E-commerce</a></li>
+      <li><a href="souverainete.html">Souveraineté</a></li>
+      <li><a href="index.html#calculateur">Calculateur</a></li>
+    </ul>
+    <span class="nav-cta" style="cursor: default; opacity: 0.5;">Waitlist VIP</span>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a>
+  <a href="ecommerce.html">E-commerce</a>
+  <a href="souverainete.html">Souveraineté</a>
+</div>
+
+<div class="waitlist-page">
+
+  <!-- ─── LEFT — Benefits ─── -->
+  <div class="wl-left">
+    <div class="starfield"></div>
+    <div style="position: absolute; bottom: 0; left: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none;"></div>
+
+    <div style="position: relative; z-index: 2;">
+      <a href="index.html" class="logo" style="font-size: 1.6rem; display: inline-block; margin-bottom: 3rem;">SEEK<span>R</span></a>
+
+      <div class="section-label reveal">
+        <span class="eyebrow">Waitlist VIP</span>
+      </div>
+      <h2 class="reveal reveal-delay-1" style="margin-bottom: 0.5rem;">
+        L'avance que vos<br>concurrents <em>n'auront pas.</em>
+      </h2>
+      <span class="gold-line reveal reveal-delay-2"></span>
+      <p class="reveal reveal-delay-2" style="color: var(--cream-dim); font-size: 0.95rem; margin-bottom: 2rem;">
+        Les 100 premiers inscrits reçoivent des avantages permanents. Pas des promotions temporaires — des conditions à vie, irrévocables.
+      </p>
+
+      <!-- Slots remaining -->
+      <div class="reveal reveal-delay-2" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 0.5rem;">
+          <span style="color: var(--muted);">Places VIP restantes</span>
+          <span style="color: var(--gold); font-weight: 500;"><span id="slots-left">47</span> / 100</span>
+        </div>
+        <div class="slots-bar"><div class="slots-fill" id="slots-fill"></div></div>
+        <div style="font-size: 0.7rem; color: var(--muted);">Les places se remplissent. Aucune exception après les 100 premiers.</div>
+      </div>
+
+      <!-- Benefits -->
+      <div class="reveal reveal-delay-3">
+        <div class="benefit-row">
+          <div class="benefit-icon">💎</div>
+          <div>
+            <div class="benefit-title">Tarif fondateur à vie</div>
+            <div class="benefit-desc">-40% sur le tarif public, appliqué à vie sur votre abonnement. Irrévocable même si les prix augmentent.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-icon">⚡</div>
+          <div>
+            <div class="benefit-title">Accès Beta prioritaire</div>
+            <div class="benefit-desc">Vous serez les premiers à intégrer SEEKR — avant l'ouverture publique. Influence directe sur le roadmap.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-icon">🎯</div>
+          <div>
+            <div class="benefit-title">Onboarding personnalisé</div>
+            <div class="benefit-desc">Session 1:1 avec notre équipe technique pour configurer SEEKR à votre catalogue et vos objectifs.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-icon">🧠</div>
+          <div>
+            <div class="benefit-title">Accès à l'équipe fondatrice</div>
+            <div class="benefit-desc">Canal Slack privé avec les fondateurs. Suggestions directement prises en compte dans le développement.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-logos reveal reveal-delay-4">
+        <div class="trust-item">🇫🇷 Startup nantaise</div>
+        <div class="trust-item">🔒 RGPD natif</div>
+        <div class="trust-item">📍 Serveurs France</div>
+        <div class="trust-item">✓ Aucune carte requise</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── RIGHT — Form ─── -->
+  <div class="wl-right">
+    <div style="max-width: 480px; width: 100%; margin: 0 auto;">
+
+      <!-- Rank counter -->
+      <div class="rank-display reveal">
+        <div style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">Inscrits aujourd'hui</div>
+        <div class="rank-number" id="live-count">847</div>
+        <div class="rank-label">et ça augmente en ce moment</div>
+        <div class="progress-section" style="margin-top: 1rem;">
+          <div class="progress-labels">
+            <span>Lancement progressif</span>
+            <span>Beta ouverte</span>
+          </div>
+          <div class="progress-bar" style="height: 3px;">
+            <div class="progress-fill" style="width: 68%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM STATE -->
+      <div id="form-state">
+        <h3 class="reveal reveal-delay-1" style="margin-bottom: 0.5rem;">Rejoindre la Waitlist VIP</h3>
+        <p class="reveal reveal-delay-1" style="color: var(--cream-dim); font-size: 0.88rem; margin-bottom: 1.5rem;">Gratuit. Aucune carte bancaire. Désabonnement en 1 clic.</p>
+
+        <form class="form-section reveal reveal-delay-2" id="main-waitlist-form">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" placeholder="Votre prénom" id="wl-firstname">
+          </div>
+          <div class="form-group">
+            <label>Email professionnel *</label>
+            <input type="email" placeholder="vous@votreentreprise.fr" id="wl-email" required>
+          </div>
+          <div class="form-group">
+            <label>Votre rôle</label>
+            <select id="wl-role">
+              <option value="" disabled selected>Sélectionner...</option>
+              <option>Fondateur / Dirigeant</option>
+              <option>E-commerçant (B2C)</option>
+              <option>Responsable Marketing / Growth</option>
+              <option>Responsable E-commerce</option>
+              <option>DSI / CTO</option>
+              <option>Développeur</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Votre plateforme e-commerce</label>
+            <select id="wl-platform">
+              <option value="" disabled selected>Sélectionner...</option>
+              <option>WooCommerce</option>
+              <option>PrestaShop</option>
+              <option>Shopify</option>
+              <option>Magento</option>
+              <option>Développement custom</option>
+              <option>Autre / Je ne sais pas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Volume de visiteurs mensuels estimé</label>
+            <select id="wl-traffic">
+              <option value="" disabled selected>Sélectionner...</option>
+              <option>Moins de 5 000</option>
+              <option>5 000 — 20 000</option>
+              <option>20 000 — 100 000</option>
+              <option>Plus de 100 000</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1rem; padding: 1rem;" id="submit-btn">
+            Rejoindre la Waitlist VIP →
+          </button>
+          <p style="font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.6;">En vous inscrivant, vous acceptez de recevoir des communications de SEEKR. Vos données restent en France. <a href="#" style="color: var(--gold);">Politique de confidentialité</a>.</p>
+        </form>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div id="success-state">
+        <div style="text-align: center; padding: 1rem 0;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
+          <div class="eyebrow" style="margin-bottom: 0.5rem;">Bienvenue chez SEEKR</div>
+          <h3 style="margin-bottom: 0.5rem;">Vous êtes dans la liste.</h3>
+          <p style="color: var(--cream-dim); font-size: 0.88rem; margin-bottom: 2rem;">Un email de confirmation arrive dans quelques minutes. Vérifiez vos spams si nécessaire.</p>
+
+          <div class="rank-display" style="margin-bottom: 1.5rem;">
+            <div class="rank-label">Votre rang actuel</div>
+            <div class="rank-number">#<span id="your-rank">—</span></div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem;">Parrainez pour monter dans la file</div>
+          </div>
+
+          <div class="referral-section">
+            <div class="referral-title">🔗 Votre lien de parrainage</div>
+            <div class="referral-url-box">
+              <span class="referral-url-text" id="ref-url">seekr.fr/waitlist?ref=SK0000</span>
+              <button class="copy-btn" onclick="copyRefUrl()">Copier</button>
+            </div>
+            <div class="milestone-row">
+              <span class="milestone-num">×3</span>
+              <span class="milestone-text">parrainages → Accès Beta prioritaire (avant la file)</span>
+            </div>
+            <div class="milestone-row">
+              <span class="milestone-num">×10</span>
+              <span class="milestone-text">parrainages → Onboarding 1:1 offert avec l'équipe</span>
+            </div>
+            <div class="milestone-row">
+              <span class="milestone-num">×25</span>
+              <span class="milestone-text">parrainages → Advisory board SEEKR + equity symbolique</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+            <button class="btn btn-outline" style="flex: 1; justify-content: center;" onclick="shareTwitter()">Partager sur X →</button>
+            <button class="btn btn-outline" style="flex: 1; justify-content: center;" onclick="shareLinkedIn()">Partager sur LinkedIn →</button>
+          </div>
+
+          <a href="index.html" class="btn btn-ghost" style="margin-top: 1.5rem; display: block; text-align: center;">← Retour à l'accueil</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/seekr.js"></script>
+<script>
+  // Animate slots fill
+  setTimeout(() => {
+    const fill = document.getElementById('slots-fill');
+    if (fill) fill.style.width = '53%';
+  }, 500);
+
+  // Live counter animation
+  let liveCount = 847;
+  const liveEl = document.getElementById('live-count');
+  setInterval(() => {
+    if (Math.random() > 0.7) {
+      liveCount += Math.floor(Math.random() * 2 + 1);
+      if (liveEl) liveEl.textContent = liveCount.toLocaleString('fr-FR');
+    }
+  }, 8000);
+
+  // Form submit
+  const form = document.getElementById('main-waitlist-form');
+  const submitBtn = document.getElementById('submit-btn');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('wl-email')?.value;
+      if (!email) return;
+      submitBtn.textContent = '⟳ Enregistrement en cours...';
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('form-state').style.display = 'none';
+        const success = document.getElementById('success-state');
+        success.style.display = 'block';
+        const rank = Math.floor(Math.random() * 200 + 700);
+        const rankEl = document.getElementById('your-rank');
+        if (rankEl) animateCount(rankEl, rank);
+        const refCode = 'SK' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        const refUrl = document.getElementById('ref-url');
+        if (refUrl) refUrl.textContent = `seekr.fr/waitlist?ref=${refCode}`;
+      }, 1400);
+    });
+  }
+
+  function animateCount(el, target) {
+    let n = target - 50;
+    const timer = setInterval(() => {
+      n += Math.floor(Math.random() * 5 + 1);
+      el.textContent = n;
+      if (n >= target) { el.textContent = target; clearInterval(timer); }
+    }, 40);
+  }
+
+  function copyRefUrl() {
+    const url = document.getElementById('ref-url')?.textContent;
+    if (url) navigator.clipboard?.writeText(url);
+    const btn = document.querySelector('.copy-btn');
+    if (btn) { btn.textContent = '✓ Copié !'; setTimeout(() => btn.textContent = 'Copier', 2000); }
+  }
+
+  function shareTwitter() {
+    const text = encodeURIComponent("Je viens de rejoindre la Waitlist VIP de @SEEKR_AI — l'IA souveraine qui transforme la recherche e-commerce. Les 100 premiers ont un tarif à vie. Rejoignez : ");
+    const url = encodeURIComponent(document.getElementById('ref-url')?.textContent || 'seekr.fr/waitlist');
+    window.open(`https://twitter.com/intent/tweet?text=${text}${url}`, '_blank');
+  }
+
+  function shareLinkedIn() {
+    const url = encodeURIComponent(document.getElementById('ref-url')?.textContent || 'seekr.fr/waitlist');
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+  }
+</script>
+</body>
+</html>

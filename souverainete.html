@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEEKR — Souveraineté Numérique & RGPD | IA Made in France</title>
+  <meta name="description" content="SEEKR est une IA souveraine développée à Nantes, hébergée en France. Conformité RGPD native, aucune donnée hors UE. La recherche intelligente sans compromis sur la sécurité.">
+  <link rel="stylesheet" href="css/seekr.css">
+  <style>
+    .hero-souv {
+      padding: clamp(8rem, 14vw, 14rem) 0 clamp(4rem, 8vw, 8rem);
+      position: relative; overflow: hidden;
+    }
+    .shield-visual {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .shield-svg { width: 100%; height: auto; }
+    .map-section { background: var(--charcoal); }
+    .france-map {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar {
+      background: var(--card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.8rem;
+      border-top: 2px solid var(--gold);
+    }
+    .pillar-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .rgpd-checklist { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .rgpd-checklist li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.9rem; color: var(--cream-dim); line-height: 1.5;
+    }
+    .rgpd-checklist li::before {
+      content: '✓';
+      color: var(--success);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .vs-block {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .vs-label { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--muted); text-align: center; }
+    .vs-card { background: var(--card); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.8rem; }
+    .vs-card.seekr-card { border-color: var(--gold); }
+    .vs-card h4 { margin-bottom: 1rem; }
+    .vs-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--cream-dim); margin-bottom: 0.5rem; }
+    .secnumcloud-badge {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    @media (max-width: 768px) { .vs-block { grid-template-columns: 1fr; } .vs-label { display: none; } }
+    .data-flow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .flow-node {
+      background: var(--card2);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      white-space: nowrap;
+    }
+    .flow-node.active { border-color: var(--gold); color: var(--gold); }
+    .flow-arrow { color: var(--muted); font-size: 1rem; }
+    .law-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 768px) { .law-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">SEEK<span>R</span></a>
+    <ul class="nav-links">
+      <li><a href="ecommerce.html">E-commerce</a></li>
+      <li><a href="souverainete.html" style="color: var(--gold);">Souveraineté</a></li>
+      <li><a href="index.html#comment-ca-marche">Comment ça marche</a></li>
+      <li><a href="index.html#blog">Blog</a></li>
+    </ul>
+    <a href="waitlist.html" class="nav-cta">Rejoindre la Waitlist →</a>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a>
+  <a href="ecommerce.html">E-commerce</a>
+  <a href="waitlist.html">Waitlist VIP</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero-souv">
+  <div class="starfield"></div>
+  <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 30% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);"></div>
+  <div class="container">
+    <div class="grid-2" style="gap: 5rem; align-items: center;">
+      <div>
+        <div class="hero-tag reveal" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <span class="badge badge-gold">Souveraineté Numérique</span>
+          <span class="badge badge-green">RGPD Natif</span>
+          <span class="badge badge-muted">Made in Nantes</span>
+        </div>
+        <h1 class="reveal reveal-delay-1">
+          Votre IA.<br>
+          Vos données.<br>
+          <em>Votre territoire.</em>
+        </h1>
+        <span class="gold-line reveal reveal-delay-2"></span>
+        <p class="lead reveal reveal-delay-2">
+          Dans un monde où vos données alimentent les modèles de vos concurrents, SEEKR est l'exception : une IA entraînée sur vos données, pour vous, hébergée sur le sol français.
+        </p>
+        <p class="reveal reveal-delay-3" style="color: var(--cream-dim); font-size: 0.95rem; margin-top: 1rem;">
+          Ce n'est pas qu'une question de conformité. C'est une question de compétitivité. Vos données comportementales sont votre avantage concurrentiel — pas celui d'un hyperscaler américain.
+        </p>
+        <div class="reveal reveal-delay-4" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="waitlist.html" class="btn btn-primary">Rejoindre la Waitlist →</a>
+          <a href="#rgpd" class="btn btn-outline">Voir les garanties RGPD</a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- Shield visual (SVG) -->
+        <div class="shield-visual">
+          <svg class="shield-svg" viewBox="0 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Shield shape -->
+            <path d="M200 20 L360 80 L360 220 Q360 360 200 420 Q40 360 40 220 L40 80 Z" fill="rgba(22,22,22,0.9)" stroke="rgba(201,168,76,0.3)" stroke-width="1.5"/>
+            <!-- Inner shield glow -->
+            <path d="M200 50 L340 100 L340 220 Q340 340 200 395 Q60 340 60 220 L60 100 Z" fill="none" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <!-- FR Flag colors subtle -->
+            <rect x="60" y="100" width="53" height="295" rx="2" fill="rgba(0,35,149,0.08)"/>
+            <rect x="113" y="100" width="54" height="295" fill="rgba(255,255,255,0.03)"/>
+            <rect x="167" y="100" width="173" height="295" rx="2" fill="rgba(237,41,57,0.05)"/>
+            <!-- Lock icon center -->
+            <rect x="176" y="190" width="48" height="40" rx="6" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5"/>
+            <path d="M188 190 L188 178 Q188 162 200 162 Q212 162 212 178 L212 190" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="200" cy="212" r="4" fill="#C9A84C"/>
+            <!-- Checkmarks -->
+            <g transform="translate(90, 160)">
+              <rect x="0" y="0" width="220" height="28" rx="4" fill="rgba(201,168,76,0.06)"/>
+              <text x="12" y="18" fill="#4CA87C" font-family="DM Sans, sans-serif" font-size="11">✓</text>
+              <text x="28" y="18" fill="#BFB89C" font-family="DM Sans, sans-serif" font-size="11">Hébergement France</text>
+            </g>
+            <g transform="translate(90, 198)">
+              <rect x="0" y="0" width="220" height="28" rx="4" fill="rgba(201,168,76,0.06)"/>
+              <text x="12" y="18" fill="#4CA87C" font-family="DM Sans, sans-serif" font-size="11">✓</text>
+              <text x="28" y="18" fill="#BFB89C" font-family="DM Sans, sans-serif" font-size="11">Données hors UE : jamais</text>
+            </g>
+            <g transform="translate(90, 270)">
+              <rect x="0" y="0" width="220" height="28" rx="4" fill="rgba(201,168,76,0.06)"/>
+              <text x="12" y="18" fill="#4CA87C" font-family="DM Sans, sans-serif" font-size="11">✓</text>
+              <text x="28" y="18" fill="#BFB89C" font-family="DM Sans, sans-serif" font-size="11">RGPD Art. 25 — by design</text>
+            </g>
+            <g transform="translate(90, 308)">
+              <rect x="0" y="0" width="220" height="28" rx="4" fill="rgba(201,168,76,0.06)"/>
+              <text x="12" y="18" fill="#4CA87C" font-family="DM Sans, sans-serif" font-size="11">✓</text>
+              <text x="28" y="18" fill="#BFB89C" font-family="DM Sans, sans-serif" font-size="11">Code développé à Nantes</text>
+            </g>
+            <g transform="translate(90, 346)">
+              <rect x="0" y="0" width="220" height="28" rx="4" fill="rgba(201,168,76,0.06)"/>
+              <text x="12" y="18" fill="#4CA87C" font-family="DM Sans, sans-serif" font-size="11">✓</text>
+              <text x="28" y="18" fill="#BFB89C" font-family="DM Sans, sans-serif" font-size="11">Modèle IA propriétaire</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PILLARS ─── -->
+<section class="section" style="background: var(--charcoal);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label reveal" style="justify-content: center;"><span class="eyebrow">Les 3 piliers</span></div>
+      <h2 class="reveal reveal-delay-1">Souveraineté <em>à 3 niveaux</em></h2>
+      <p class="lead reveal reveal-delay-2" style="max-width: 500px; margin: 1rem auto 0;">Hébergement, algorithme, équipe — trois niveaux de garantie que peu d'acteurs peuvent offrir.</p>
+    </div>
+    <div class="grid-3">
+      <div class="pillar reveal">
+        <div class="pillar-num">01 — Infrastructure</div>
+        <h4 style="margin-bottom: 1rem;">Serveurs en France</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim); margin-bottom: 1.5rem;">Vos données sont physiquement hébergées sur des serveurs localisés en France et en Europe. Ce qui compte pour le RGPD, c'est la localisation physique des données — pas le siège social de l'hébergeur.</p>
+        <div class="data-flow" style="margin-top: 0;">
+          <div class="flow-node active">Votre site</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node active">SEEKR Engine</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node active">🇫🇷 Serveurs FR</div>
+        </div>
+      </div>
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-num">02 — Algorithme</div>
+        <h4 style="margin-bottom: 1rem;">IA propriétaire</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim); margin-bottom: 1.5rem;">Notre modèle d'IA est développé et maintenu par notre équipe à Nantes. Vos données ne servent pas à entraîner un modèle global. Elles entraînent votre modèle, pour vos clients, uniquement.</p>
+        <div style="background: rgba(201,168,76,0.06); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); margin-top: 0;">model.client_id = "votre_id_unique"<br>model.training_data = "vos_données_seulement"<br>model.shared = false</div>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-num">03 — Équipe</div>
+        <h4 style="margin-bottom: 1rem;">Made in Nantes</h4>
+        <p style="font-size: 0.88rem; color: var(--cream-dim); margin-bottom: 1.5rem;">SEEKR est une startup française, développée à Nantes. Pas de sous-traitance offshore pour les parties sensibles. L'équipe qui accède à vos données est en France, soumise au droit français.</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tag">🇫🇷 Équipe FR</span>
+          <span class="tag">SIRET français</span>
+          <span class="tag">Droit CNIL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RGPD ─── -->
+<section class="section" id="rgpd">
+  <div class="container">
+    <div class="grid-2" style="gap: 4rem; align-items: start;">
+      <div>
+        <div class="section-label reveal"><span class="eyebrow">Conformité RGPD</span></div>
+        <h2 class="reveal reveal-delay-1">Privacy <em>by design</em>,<br>pas en option</h2>
+        <span class="gold-line reveal reveal-delay-2"></span>
+        <p class="reveal reveal-delay-2" style="color: var(--cream-dim); font-size: 0.95rem; margin-bottom: 2rem;">
+          SEEKR est conçu dès le départ pour être conforme au RGPD — article 25. La conformité n'est pas une case à cocher en fin de projet. C'est l'architecture de base.
+        </p>
+        <ul class="rgpd-checklist reveal reveal-delay-3">
+          <li>Minimisation des données : seules les données nécessaires sont collectées et traitées</li>
+          <li>Droit à l'effacement : suppression d'un profil visiteur sur demande, en 72h</li>
+          <li>Portabilité : export de vos données dans un format standard à tout moment</li>
+          <li>Pseudonymisation native des identifiants comportementaux</li>
+          <li>DPA (Data Processing Agreement) fourni dès l'inscription Waitlist</li>
+          <li>Registre des traitements disponible sur demande</li>
+          <li>Aucun transfert hors EEE — contractuellement garanti</li>
+          <li>Cookie-less disponible : mode tracking côté serveur</li>
+        </ul>
+      </div>
+      <div>
+        <div class="vs-block reveal reveal-delay-2">
+          <div class="vs-card seekr-card">
+            <div class="eyebrow" style="margin-bottom: 0.75rem; color: var(--gold);">SEEKR</div>
+            <h4 style="margin-bottom: 1rem; color: var(--cream);">Souveraineté totale</h4>
+            <div class="vs-item"><span style="color: var(--success);">✓</span> Serveurs France/UE uniquement</div>
+            <div class="vs-item"><span style="color: var(--success);">✓</span> Modèle IA non partagé</div>
+            <div class="vs-item"><span style="color: var(--success);">✓</span> DPA inclus, sans surcoût</div>
+            <div class="vs-item"><span style="color: var(--success);">✓</span> Droit à l'effacement : 72h</div>
+            <div class="vs-item"><span style="color: var(--success);">✓</span> Équipe française, droit FR</div>
+            <div class="vs-item"><span style="color: var(--success);">✓</span> Code audit disponible</div>
+          </div>
+          <div class="vs-label">VS</div>
+          <div class="vs-card">
+            <div class="eyebrow" style="margin-bottom: 0.75rem; color: var(--muted);">Solutions US typiques</div>
+            <h4 style="margin-bottom: 1rem; color: var(--cream-dim);">Conformité partielle</h4>
+            <div class="vs-item"><span style="color: var(--danger);">✗</span> US-EU Privacy Shield caduc</div>
+            <div class="vs-item"><span style="color: var(--danger);">✗</span> Données alimentent le modèle global</div>
+            <div class="vs-item"><span style="color: var(--muted);">≈</span> DPA sur demande, option payante</div>
+            <div class="vs-item"><span style="color: var(--muted);">≈</span> Délais non garantis</div>
+            <div class="vs-item"><span style="color: var(--danger);">✗</span> Cloud Act US applicable</div>
+            <div class="vs-item"><span style="color: var(--danger);">✗</span> Code propriétaire fermé</div>
+          </div>
+        </div>
+
+        <!-- SecNumCloud roadmap -->
+        <div class="secnumcloud-badge reveal reveal-delay-3" style="margin-top: 1.5rem;">
+          <div style="font-size: 2rem;">🛡️</div>
+          <div>
+            <div class="eyebrow" style="margin-bottom: 0.3rem;">Roadmap 2026</div>
+            <div style="font-size: 0.9rem; color: var(--cream); font-weight: 500;">Certification SecNumCloud (ANSSI)</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem;">Pour nos clients entreprises et collectivités, nous visons la certification de l'agence nationale de la sécurité des systèmes d'information.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LEGAL FRAMEWORK ─── -->
+<section class="section" style="background: var(--charcoal);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="section-label reveal" style="justify-content: center;"><span class="eyebrow">Cadre légal</span></div>
+      <h2 class="reveal reveal-delay-1">Les textes qui nous <em>encadrent et nous protègent</em></h2>
+    </div>
+    <div class="law-grid">
+      <div class="card reveal">
+        <div class="eyebrow" style="margin-bottom: 0.75rem;">RGPD — Art. 25</div>
+        <h4 style="margin-bottom: 0.75rem;">Protection des données dès la conception</h4>
+        <p style="font-size: 0.85rem; color: var(--cream-dim);">SEEKR implémente le principe de "Privacy by Design" : la protection des données est intégrée dans l'architecture, pas ajoutée en post-production.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="eyebrow" style="margin-bottom: 0.75rem;">Loi IA — UE 2024</div>
+        <h4 style="margin-bottom: 0.75rem;">Conformité EU AI Act</h4>
+        <p style="font-size: 0.85rem; color: var(--cream-dim);">Notre système est catégorisé à risque limité selon l'EU AI Act. Nous préparons dès maintenant les obligations de transparence et de documentation requises.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="eyebrow" style="margin-bottom: 0.75rem;">DSA/DMA — 2023</div>
+        <h4 style="margin-bottom: 0.75rem;">Conformité Digital Services Act</h4>
+        <p style="font-size: 0.85rem; color: var(--cream-dim);">Recommandations algorithmiques transparentes. Vos clients peuvent comprendre pourquoi un résultat leur est montré. Aucune manipulation opaque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="section--sm">
+  <div class="container">
+    <div class="card card--gold reveal" style="padding: 3rem; text-align: center;">
+      <div class="eyebrow" style="margin-bottom: 1rem;">Sans compromis</div>
+      <h2 style="margin-bottom: 1rem;">Performance IA.<br><em>Souveraineté totale.</em></h2>
+      <p style="color: var(--cream-dim); max-width: 480px; margin: 0 auto 2rem; font-size: 0.95rem;">Il est temps de prouver qu'on peut avoir les deux. Rejoignez les entreprises qui font confiance à SEEKR.</p>
+      <a href="waitlist.html" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">Rejoindre la Waitlist VIP →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo" style="font-size: 1.4rem;">SEEK<span>R</span></a>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem; max-width: 280px; line-height: 1.6;">IA souveraine. Développé à Nantes. Données en France.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Produit</h5>
+        <ul>
+          <li><a href="ecommerce.html">E-commerce & Performance</a></li>
+          <li><a href="souverainete.html">Souveraineté & Sécurité</a></li>
+          <li><a href="waitlist.html">Waitlist VIP</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGU / CGV</a></li>
+          <li><a href="#">DPA Template</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:hello@seekr.fr">hello@seekr.fr</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Twitter / X</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEEKR SAS — Nantes, France.</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted);">Serveurs FR · Données hors UE : jamais.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/seekr.js"></script>
+</body>
+</html>
