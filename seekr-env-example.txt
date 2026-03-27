@@ -1,0 +1,24 @@
+# ============================================================
+# SEEKR BACKEND — Variables d'environnement
+# Copiez ce fichier en .env et remplissez les valeurs
+# NE JAMAIS commiter le fichier .env sur Git !
+# ============================================================
+
+# Port (Render.com le définit automatiquement)
+PORT=3001
+
+# Environnement
+NODE_ENV=production
+
+# JWT Secret — CHANGEZ CETTE VALEUR (minimum 32 caractères aléatoires)
+# Générez avec: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+JWT_SECRET=CHANGEZ_MOI_AVEC_UNE_VALEUR_TRES_LONGUE_ET_ALEATOIRE
+
+# Salt pour hash des IPs (RGPD) — CHANGEZ CETTE VALEUR
+HASH_SALT=CHANGEZ_MOI_AUSSI_VALEUR_ALEATOIRE
+
+# Chemin base de données (sur Render.com, utilisez un Disk)
+DB_PATH=/var/data/seekr.db
+
+# URL du dashboard (pour CORS)
+DASHBOARD_URL=https://seekr-dashboard.onrender.com
